@@ -1,21 +1,21 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.HelloService;
+import com.example.demo.service.MathService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
 
-    private final HelloService service;
+    private final MathService service;
 
-    public HelloController(HelloService service) {
+    public HelloController(MathService service) {
         this.service = service;
     }
 
     @GetMapping("/hello")
-    public String hello() {
-        return service.sayHello();
+    public void hello() {
+        service.doSomeMath();
     }
 
     @GetMapping("/tracked")

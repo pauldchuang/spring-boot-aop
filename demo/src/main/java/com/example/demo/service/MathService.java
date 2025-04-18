@@ -4,10 +4,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.annotation.TrackTime;
 
 @Service
-public class HelloService {
+public class MathService {
 
-    public String sayHello() {
-        return "Hello!";
+    public void doSomeMath() {
+        System.out.println("Calculated value: " + Math.sqrt(Math.random() * 1000000000));
     }
 
     @TrackTime

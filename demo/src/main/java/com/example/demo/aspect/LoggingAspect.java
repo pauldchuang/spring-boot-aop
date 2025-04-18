@@ -15,22 +15,24 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 
     @Before("execution(* com.example.demo.service.*.*(..))")
-    public void logBefore(JoinPoint joinPoint) throws Throwable {
-        System.out.println("Before " + joinPoint.getSignature().getName());
+    public void logMethodNameBefore(JoinPoint joinPoint) throws Throwable {
+        System.out.println("Before " + joinPoint.getSignature().getName() + " method");
     }
 
 
     @Around("execution(* com.example.demo.service.*.*(..))")
-    public Object logAround(ProceedingJoinPoint pjp) throws Throwable {
-        System.out.println("Around before the method: " + pjp.getSignature().getName());
+    public Object logTimingAround(ProceedingJoinPoint pjp) throws Throwable {
+        System.out.println("Start timing in @Around...");
+        long start = System.currentTimeMillis();
         Object result = pjp.proceed();
-        System.out.println("Around after the method: " + pjp.getSignature().getName());
+        long end = System.currentTimeMillis();
+        System.out.println("Execution time: " + (end - start) + " ms in @Around");
         return result;
     }
 
     @After("execution(* com.example.demo.service.*.*(..))")
-    public void logAfter(JoinPoint joinPoint) throws Throwable {
-        System.out.println("After " + joinPoint.getSignature().getName());
+    public void logMethodNameAfter(JoinPoint joinPoint) throws Throwable {
+        System.out.println("After " + joinPoint.getSignature().getName() + " method");
     }
 
     @Around("@annotation(com.example.demo.annotation.TrackTime)")
