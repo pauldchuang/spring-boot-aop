@@ -19,8 +19,4 @@ public class HelloService {
         }
         return "Tracked Hello!";
     }
-
-    public void errorMethod() {
-        throw new RuntimeException("Oops!");
-    }
 }

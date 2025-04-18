@@ -23,13 +23,7 @@ public class LoggingAspect {
     @Around("execution(* com.example.demo.service.*.*(..))")
     public Object logAround(ProceedingJoinPoint pjp) throws Throwable {
         System.out.println("Around before the method: " + pjp.getSignature().getName());
-        Object result = null;
-        try {
-            result = pjp.proceed();
-        } catch (Throwable ex) {
-            System.out.println("Exception in method: " + ex.getMessage());
-            throw ex;
-        }
+        Object result = pjp.proceed();
         System.out.println("Around after the method: " + pjp.getSignature().getName());
         return result;
     }

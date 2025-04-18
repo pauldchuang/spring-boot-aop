@@ -22,10 +22,4 @@ public class HelloController {
     public String tracked() {
         return service.sayTrackedHello();
     }
-
-    @GetMapping("/error")
-    public String error() {
-        service.errorMethod();
-        return "unreachable";
-    }
 }
